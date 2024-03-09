@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from setuptools import find_packages, setup
+import sys
+
+from setuptools import find_packages,  setup
 
 
 def get_description(file_path, max_length=70):
@@ -24,9 +26,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 description = get_description("README.md")
 
+# Get the major version of Python
+python_major_version = sys.version_info.major
+
 setup(
     name="create-pypi-cli",
-    version="0.1.10",
+    version="0.1.11",
     packages=find_packages(),
     description=description,
     long_description=long_description,
@@ -52,4 +57,17 @@ setup(
             "create-pypi-cli = main:main",
         ],
     },
+    data_files=[
+        (".github/workflows", [".github/workflows/main.yml"]),
+        (
+            ".",
+            [
+                ".gitignore",
+                ".isort.cfg",
+                ".pre-commit-config.yaml",
+                "README.md",
+                "requirements.txt",
+            ],
+        ),
+    ],
 )
