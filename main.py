@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import subprocess
 
 import click
@@ -20,13 +21,10 @@ def create_pypi_cli(project_name):
 
     # Copy the GitHub Actions workflow file
     os.makedirs(os.path.join(project_name, ".github", "workflows"))
-    with open(".github/workflows/main.yml", "r") as f:
-        workflow_content = f.read()
-    with open(
+    shutil.copy(
+        ".github/workflows/main.yml",
         os.path.join(project_name, ".github", "workflows", "main.yml"),
-        "w",
-    ) as f:
-        f.write(workflow_content)
+    )
 
     # Update the project name in the workflow file
     with open(
@@ -55,46 +53,31 @@ def create_pypi_cli(project_name):
         f.write(workflow_content)
 
     # Copy the requirements file
-    with open("requirements.txt", "r") as f:
-        requirements_content = f.read()
-    with open(
+    shutil.copy(
+        "requirements.txt",
         os.path.join(
             project_name,
             "requirements.txt",
         ),
-        "w",
-    ) as f:
-        f.write(requirements_content)
+    )
 
     # Copy the .gitignore file
-    with open(".gitignore", "r") as f:
-        gitignore_content = f.read()
-    with open(os.path.join(project_name, ".gitignore"), "w") as f:
-        f.write(gitignore_content)
+    shutil.copy(".gitignore", os.path.join(project_name, ".gitignore"))
 
     # Copy the pre-commit config file
-    with open(".pre-commit-config.yaml", "r") as f:
-        precommit_content = f.read()
-    with open(os.path.join(project_name, ".pre-commit-config.yaml"), "w") as f:
-        f.write(precommit_content)
+    shutil.copy(
+        ".pre-commit-config.yaml",
+        os.path.join(project_name, ".pre-commit-config.yaml"),
+    )
 
     # Copy the isort config file
-    with open(".isort.cfg", "r") as f:
-        isort_content = f.read()
-    with open(os.path.join(project_name, ".isort.cfg"), "w") as f:
-        f.write(isort_content)
+    shutil.copy(".isort.cfg", os.path.join(project_name, ".isort.cfg"))
 
     # Copy the setup.py file
-    with open("setup.py", "r") as f:
-        setup_content = f.read()
-    with open(os.path.join(project_name, "setup.py"), "w") as f:
-        f.write(setup_content)
+    shutil.copy("setup.py", os.path.join(project_name, "setup.py"))
 
     # Copy the README.md file
-    with open("README.md", "r") as f:
-        readme_content = f.read()
-    with open(os.path.join(project_name, "README.md"), "w") as f:
-        f.write(readme_content)
+    shutil.copy("README.md", os.path.join(project_name, "README.md"))
 
     # Update the project name in the setup.py file
     with open(os.path.join(project_name, "setup.py"), "r") as f:
