@@ -23,35 +23,29 @@ This project provides a solid foundation for building a Python CLI application. 
 
 To start developing your CLI application, follow these steps:
 
-1. Clone the repository:
+1. Install `create-pypi-cli`
 
    ```bash
-   git clone https://github.com/lguibr/create-pypi-cli.git
+   pip install create-pypi-cli
    ```
 
-2. Install the development dependencies:
+2. Create a new CLI project with a predefined CI with formatting/linting/typecheck/bump-version and publish at pypi
 
    ```bash
-   pip install -r requirements.txt
+   create-pypi-cli my-cli-project && cd my-cli-project
    ```
 
-3. Install the pre-commit hooks:
-
-   ```bash
-   pre-commit install
-   ```
-
-4. Customize the project:
+3. Customize the project:
 
    - Update the `setup.py` file with your project's metadata and dependencies.
    - Modify the CLI template in `your_project_name/cli.py` according to your application's needs.
    - Add your project's dependencies to the `requirements.txt` file.
 
-5. Start coding!
+4. Start coding!
 
    Make your changes and commit them, following the pre-commit hooks for code formatting and quality checks.
 
-6. Push your changes and create a pull request.
+5. Push your changes and create a pull request.
 
 ## Contributing
 
