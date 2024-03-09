@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+
 from setuptools import find_packages, setup
 
 
@@ -24,13 +26,18 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 description = get_description("README.md")
 
+# Get the major version of Python
+python_major_version = sys.version_info.major
+
 setup(
     name="create-pypi-cli",
-    version="0.1.1",
+    version="0.1.0",
     packages=find_packages(),
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
+    license="MIT",
+    python_requires=f">={python_major_version}",
     py_modules=["main"],
     install_requires=[
         "click",
