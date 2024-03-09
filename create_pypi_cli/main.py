@@ -28,7 +28,19 @@ def create_pypi_cli(project_name):
         if os.path.isfile(src_path):
             shutil.copy(src_path, dst_path)
         elif os.path.isdir(src_path):
-            shutil.copytree(src_path, dst_path)
+            if item == ".github":
+                os.makedirs(os.path.join(project_name, ".github", "workflows"))
+                shutil.copy(
+                    os.path.join(src_path, "workflows", "main.yml"),
+                    os.path.join(
+                        project_name,
+                        ".github",
+                        "workflows",
+                        "main.yml",
+                    ),
+                )
+            else:
+                shutil.copytree(src_path, dst_path)
 
     # Update the project name in the setup.py file
     setup_file_path = os.path.join(project_name, "setup.py")
