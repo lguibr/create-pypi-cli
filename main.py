@@ -2,7 +2,14 @@
 import os
 import shutil
 import subprocess
-import sys
+
+import click
+
+
+@click.command()
+@click.argument("project_name")
+def main(project_name):
+    create_pypi_cli(project_name)
 
 
 def create_pypi_cli(project_name):
@@ -104,9 +111,4 @@ if __name__ == "__main__":
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python main.py <project_name>")
-        sys.exit(1)
-
-    project_name = sys.argv[1]
-    create_pypi_cli(project_name)
+    main()

@@ -54,7 +54,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "create-pypi-cli = main",
+            "create-pypi-cli = main:main",
         ],
     },
 )
