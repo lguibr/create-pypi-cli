@@ -37,7 +37,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.6",
-    package_data={"create_pypi_cli": ["templates/*", "templates/.github/*"]},
     py_modules=["main"],
     include_package_data=True,
     install_requires=[
