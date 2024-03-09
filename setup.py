@@ -31,7 +31,7 @@ python_major_version = sys.version_info.major
 
 setup(
     name="create-pypi-cli",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(),
     description=description,
     long_description=long_description,
