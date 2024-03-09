@@ -21,31 +21,14 @@ def create_pypi_cli(project_name):
     os.makedirs(os.path.join(project_name, project_name.replace("-", "_")))
 
     # Copy the template files
-    for file_name in [
-        "requirements.txt",
-        ".gitignore",
-        ".pre-commit-config.yaml",
-        ".isort.cfg",
-        "setup.py",
-        "README.md",
-    ]:
-        src_path = resource_filename(
-            "create_pypi_cli",
-            f"templates/{file_name}",
-        )
-        dst_path = os.path.join(project_name, file_name)
-        shutil.copy(src_path, dst_path)
-
-    # Create the .github/workflows directory
-    os.makedirs(os.path.join(project_name, ".github", "workflows"))
-
-    # Copy the main.yml file to .github/workflows
-    src_path = resource_filename(
-        "create_pypi_cli",
-        "templates/workflows/main.yml",
-    )
-    dst_path = os.path.join(project_name, ".github", "workflows", "main.yml")
-    shutil.copy(src_path, dst_path)
+    template_dir = resource_filename("create_pypi_cli", "templates")
+    for item in os.listdir(template_dir):
+        src_path = os.path.join(template_dir, item)
+        dst_path = os.path.join(project_name, item)
+        if os.path.isfile(src_path):
+            shutil.copy(src_path, dst_path)
+        elif os.path.isdir(src_path):
+            shutil.copytree(src_path, dst_path)
 
     # Update the project name in the setup.py file
     setup_file_path = os.path.join(project_name, "setup.py")
