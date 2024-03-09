@@ -26,7 +26,7 @@ description = get_description("README.md")
 
 setup(
     name="create-pypi-cli",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(),
     description=description,
     long_description=long_description,
