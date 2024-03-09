@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import importlib.resources
 import os
 import subprocess
 
@@ -21,9 +20,8 @@ def create_pypi_cli(project_name):
 
     # Copy the GitHub Actions workflow file
     os.makedirs(os.path.join(project_name, ".github", "workflows"))
-    workflow_content = importlib.resources.read_text(
-        "create_pypi_cli", ".github/workflows/main.yml"
-    )
+    with open(".github/workflows/main.yml", "r") as f:
+        workflow_content = f.read()
     with open(
         os.path.join(project_name, ".github", "workflows", "main.yml"),
         "w",
@@ -57,9 +55,8 @@ def create_pypi_cli(project_name):
         f.write(workflow_content)
 
     # Copy the requirements file
-    requirements_content = importlib.resources.read_text(
-        "create_pypi_cli", "requirements.txt"
-    )
+    with open("requirements.txt", "r") as f:
+        requirements_content = f.read()
     with open(
         os.path.join(
             project_name,
@@ -70,41 +67,32 @@ def create_pypi_cli(project_name):
         f.write(requirements_content)
 
     # Copy the .gitignore file
-    gitignore_content = importlib.resources.read_text(
-        "create_pypi_cli",
-        ".gitignore",
-    )
+    with open(".gitignore", "r") as f:
+        gitignore_content = f.read()
     with open(os.path.join(project_name, ".gitignore"), "w") as f:
         f.write(gitignore_content)
 
     # Copy the pre-commit config file
-    precommit_content = importlib.resources.read_text(
-        "create_pypi_cli", ".pre-commit-config.yaml"
-    )
+    with open(".pre-commit-config.yaml", "r") as f:
+        precommit_content = f.read()
     with open(os.path.join(project_name, ".pre-commit-config.yaml"), "w") as f:
         f.write(precommit_content)
 
     # Copy the isort config file
-    isort_content = importlib.resources.read_text(
-        "create_pypi_cli",
-        ".isort.cfg",
-    )
+    with open(".isort.cfg", "r") as f:
+        isort_content = f.read()
     with open(os.path.join(project_name, ".isort.cfg"), "w") as f:
         f.write(isort_content)
 
     # Copy the setup.py file
-    setup_content = importlib.resources.read_text(
-        "create_pypi_cli",
-        "setup.py",
-    )
+    with open("setup.py", "r") as f:
+        setup_content = f.read()
     with open(os.path.join(project_name, "setup.py"), "w") as f:
         f.write(setup_content)
 
     # Copy the README.md file
-    readme_content = importlib.resources.read_text(
-        "create_pypi_cli",
-        "README.md",
-    )
+    with open("README.md", "r") as f:
+        readme_content = f.read()
     with open(os.path.join(project_name, "README.md"), "w") as f:
         f.write(readme_content)
 
