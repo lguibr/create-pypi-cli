@@ -36,7 +36,7 @@ setup(
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    python_requires=f">={python_major_version}",
+    python_requires=">=3.6",
     py_modules=["main"],
     install_requires=[
         "click",
