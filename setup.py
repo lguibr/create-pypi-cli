@@ -31,14 +31,15 @@ python_major_version = sys.version_info.major
 
 setup(
     name="create-pypi-cli",
-    version="0.1.15",
+    version="0.2.1",
     packages=find_packages(),
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.6",
-    package_data={"create_pypi_cli": ["templates/*", "templates/workflows/*"]},
+    package_data={"create_pypi_cli": ["templates/*", "templates/.github/*"]},
     py_modules=["main"],
+    include_package_data=True,
     install_requires=[
         "click",
     ],

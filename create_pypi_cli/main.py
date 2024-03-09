@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import subprocess
-from importlib import resources
 
 import click
-
-from . import templates
+from pkg_resources import resource_filename
 
 
 @click.command()
@@ -30,9 +29,23 @@ def create_pypi_cli(project_name):
         "setup.py",
         "README.md",
     ]:
-        file_content = resources.read_text(templates, file_name)
-        with open(os.path.join(project_name, file_name), "w") as file:
-            file.write(file_content)
+        src_path = resource_filename(
+            "create_pypi_cli",
+            f"templates/{file_name}",
+        )
+        dst_path = os.path.join(project_name, file_name)
+        shutil.copy(src_path, dst_path)
+
+    # Create the .github/workflows directory
+    os.makedirs(os.path.join(project_name, ".github", "workflows"))
+
+    # Copy the main.yml file to .github/workflows
+    src_path = resource_filename(
+        "create_pypi_cli",
+        "templates/workflows/main.yml",
+    )
+    dst_path = os.path.join(project_name, ".github", "workflows", "main.yml")
+    shutil.copy(src_path, dst_path)
 
     # Update the project name in the setup.py file
     setup_file_path = os.path.join(project_name, "setup.py")
@@ -41,16 +54,6 @@ def create_pypi_cli(project_name):
     setup_content = setup_content.replace("create-pypi-cli", project_name)
     with open(setup_file_path, "w") as setup_file:
         setup_file.write(setup_content)
-
-    # Create the .github/workflows directory
-    os.makedirs(os.path.join(project_name, ".github", "workflows"))
-
-    # Copy the main.yml file to .github/workflows
-    main_yml_content = resources.read_text(templates, "workflows/main.yml")
-    with open(
-        os.path.join(project_name, ".github", "workflows", "main.yml"), "w"
-    ) as file:
-        file.write(main_yml_content)
 
     # Create the CLI file
     cli_file_path = os.path.join(
