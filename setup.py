@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from setuptools import find_packages,  setup
+from setuptools import find_packages, setup
 
 
 def get_description(file_path, max_length=70):
@@ -57,17 +57,5 @@ setup(
             "create-pypi-cli = main:main",
         ],
     },
-    data_files=[
-        (".github/workflows", [".github/workflows/main.yml"]),
-        (
-            ".",
-            [
-                ".gitignore",
-                ".isort.cfg",
-                ".pre-commit-config.yaml",
-                "README.md",
-                "requirements.txt",
-            ],
-        ),
-    ],
+    package_data={"": ["templates/*"]},
 )
