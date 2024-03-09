@@ -2,10 +2,10 @@
 
 This project was generated using the [create-pypi-cli](https://github.com/lguibr/create-pypi-cli) tool.
 
-[![CI](https://github.com/lguibr/create-pypi-cli /workflows/CI/badge.svg)](https://github.com/lguibr/create-pypi-cli /actions)
-[![PyPI](https://img.shields.io/pypi/v/create-pypi-cli .svg)](https://pypi.org/project/create-pypi-cli /)
-[![Python Version](https://img.shields.io/pypi/pyversions/create-pypi-cli .svg)](https://pypi.org/project/create-pypi-cli /)
-[![License](https://img.shields.io/pypi/l/create-pypi-cli .svg)](https://github.com/lguibr/create-pypi-cli /blob/main/LICENSE)
+[![CI](https://github.com/lguibr/create-pypi-cli/workflows/CI/badge.svg)](https://github.com/lguibr/create-pypi-cli/actions)
+[![PyPI](https://img.shields.io/pypi/v/create-pypi-cli.svg)](https://pypi.org/project/create-pypi-cli/)
+[![Python Version](https://img.shields.io/pypi/pyversions/create-pypi-cli.svg)](https://pypi.org/project/create-pypi-cli/)
+[![License](https://img.shields.io/pypi/l/create-pypi-cli.svg)](https://github.com/lguibr/create-pypi-cli/blob/main/LICENSE)
 
 ## About This Project
 
@@ -26,7 +26,7 @@ To start developing your CLI application, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/lguibr/create-pypi-cli .git
+   git clone https://github.com/lguibr/create-pypi-cli.git
    ```
 
 2. Install the development dependencies:
