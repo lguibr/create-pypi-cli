@@ -5,7 +5,7 @@ from importlib import resources
 
 import click
 
-import templates
+from . import templates
 
 
 @click.command()

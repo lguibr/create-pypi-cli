@@ -37,6 +37,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.6",
+    package_data={"create_pypi_cli": ["templates/*", "templates/workflows/*"]},
     py_modules=["main"],
     install_requires=[
         "click",
@@ -54,8 +55,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "create-pypi-cli = main:main",
+            "create-pypi-cli = create_pypi_cli.main:main",
         ],
     },
-    package_data={"": ["templates/*"]},
 )
