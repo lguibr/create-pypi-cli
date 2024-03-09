@@ -42,6 +42,7 @@ jobs:
 
   bump-version:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [lint, type-check]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -66,15 +67,15 @@ jobs:
       new_version: ${{ steps.bump_version.outputs.new_version }}
 
   release:
-    needs: [lint, type-check, bump-version]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [bump-version]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
