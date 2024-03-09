@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import importlib.resources
 import os
-import shutil
 import subprocess
 
 import click
@@ -21,10 +21,14 @@ def create_pypi_cli(project_name):
 
     # Copy the GitHub Actions workflow file
     os.makedirs(os.path.join(project_name, ".github", "workflows"))
-    shutil.copy(
-        ".github/workflows/main.yml",
-        os.path.join(project_name, ".github", "workflows", "main.yml"),
+    workflow_content = importlib.resources.read_text(
+        "create_pypi_cli", ".github/workflows/main.yml"
     )
+    with open(
+        os.path.join(project_name, ".github", "workflows", "main.yml"),
+        "w",
+    ) as f:
+        f.write(workflow_content)
 
     # Update the project name in the workflow file
     with open(
@@ -53,31 +57,56 @@ def create_pypi_cli(project_name):
         f.write(workflow_content)
 
     # Copy the requirements file
-    shutil.copy(
-        "requirements.txt",
+    requirements_content = importlib.resources.read_text(
+        "create_pypi_cli", "requirements.txt"
+    )
+    with open(
         os.path.join(
             project_name,
             "requirements.txt",
         ),
-    )
+        "w",
+    ) as f:
+        f.write(requirements_content)
 
     # Copy the .gitignore file
-    shutil.copy(".gitignore", os.path.join(project_name, ".gitignore"))
+    gitignore_content = importlib.resources.read_text(
+        "create_pypi_cli",
+        ".gitignore",
+    )
+    with open(os.path.join(project_name, ".gitignore"), "w") as f:
+        f.write(gitignore_content)
 
     # Copy the pre-commit config file
-    shutil.copy(
-        ".pre-commit-config.yaml",
-        os.path.join(project_name, ".pre-commit-config.yaml"),
+    precommit_content = importlib.resources.read_text(
+        "create_pypi_cli", ".pre-commit-config.yaml"
     )
+    with open(os.path.join(project_name, ".pre-commit-config.yaml"), "w") as f:
+        f.write(precommit_content)
 
     # Copy the isort config file
-    shutil.copy(".isort.cfg", os.path.join(project_name, ".isort.cfg"))
+    isort_content = importlib.resources.read_text(
+        "create_pypi_cli",
+        ".isort.cfg",
+    )
+    with open(os.path.join(project_name, ".isort.cfg"), "w") as f:
+        f.write(isort_content)
 
     # Copy the setup.py file
-    shutil.copy("setup.py", os.path.join(project_name, "setup.py"))
+    setup_content = importlib.resources.read_text(
+        "create_pypi_cli",
+        "setup.py",
+    )
+    with open(os.path.join(project_name, "setup.py"), "w") as f:
+        f.write(setup_content)
 
     # Copy the README.md file
-    shutil.copy("README.md", os.path.join(project_name, "README.md"))
+    readme_content = importlib.resources.read_text(
+        "create_pypi_cli",
+        "README.md",
+    )
+    with open(os.path.join(project_name, "README.md"), "w") as f:
+        f.write(readme_content)
 
     # Update the project name in the setup.py file
     with open(os.path.join(project_name, "setup.py"), "r") as f:
