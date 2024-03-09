@@ -39,7 +39,7 @@ def create_pypi_cli(project_name):
                         "main.yml",
                     ),
                 )
-            else:
+            elif item != "workflows":
                 shutil.copytree(src_path, dst_path)
 
     # Update the project name in the setup.py file
