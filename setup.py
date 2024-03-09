@@ -40,7 +40,6 @@ setup(
     package_data={
         "create_pypi_cli": [
             "templates/*",
-            "templates/.github/*",
             "templates/.github/workflows/*",
         ]
     },
